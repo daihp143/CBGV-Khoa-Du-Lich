@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8">
@@ -168,6 +168,7 @@
     .hero-copy h1 {
       max-width: 760px;
       margin-bottom: 18px;
+      margin-top: 18px;
       font-size: clamp(34px, 5vw, 56px);
       text-transform: uppercase;
     }
@@ -345,6 +346,7 @@
     }
 
     .spotlight-card {
+      position: relative;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(234, 247, 239, 0.9));
     }
@@ -363,8 +365,10 @@
     }
 
     .leader-avatar {
-      width: 88px;
-      height: 88px;
+      position: relative;
+      overflow: hidden;
+      width: 140px;
+      height: 200px;
       margin: 22px 0 18px;
       display: grid;
       place-items: center;
@@ -373,6 +377,33 @@
       color: #fff;
       font: 800 30px/1 "Montserrat", sans-serif;
       box-shadow: 0 16px 30px rgba(10, 94, 52, 0.18);
+    }
+
+    .leader-avatar img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .leader-header {
+      position: relative;
+      margin: 22px 0 18px;
+      min-height: 200px;
+      padding-right: 170px;
+    }
+
+    .leader-header .leader-avatar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+    }
+
+    .leader-copy {
+      min-width: 0;
     }
 
     .spotlight-card h3 {
@@ -451,19 +482,21 @@
     .member-card {
       position: relative;
       overflow: hidden;
-      min-height: 220px;
-      height: fit-content;
-      padding: 22px;
+      min-height: 0;
+      height: auto;
+      padding: 15px;
       border-radius: var(--radius-lg);
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+      background:
+        radial-gradient(circle at top right, rgba(242, 201, 76, 0.12), transparent 26%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 251, 246, 0.94));
+      border: 1px solid rgba(10, 94, 52, 0.1);
+      box-shadow: 0 18px 36px rgba(10, 94, 52, 0.1);
       transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
 
     .member-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 22px 40px rgba(10, 94, 52, 0.16);
+      box-shadow: 0 24px 44px rgba(10, 94, 52, 0.14);
       border-color: rgba(10, 94, 52, 0.18);
     }
 
@@ -476,38 +509,39 @@
       height: 92px;
       border-radius: 24px;
       background: linear-gradient(135deg, rgba(31, 168, 93, 0.12), rgba(242, 201, 76, 0.24));
-      transform: rotate(18deg);
+      transform: rotate(10deg);
     }
 
     .member-top {
       position: relative;
       z-index: 1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      align-items: start;
+      gap: 0px;
+      margin-bottom: 0;
     }
 
     .member-heading {
       position: relative;
       z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+      display: grid;
+      gap: 10px;
+      margin-bottom: 0;
     }
 
     .member-avatar {
       position: relative;
-      width: 120px;
-      height: 120px;
+      width: 105px;
+      height: 160px;
+      font-size: 0;
+      color: transparent;
       border-radius: 20px;
       overflow: hidden;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(231, 245, 235, 0.96));
       border: 1px solid rgba(10, 94, 52, 0.12);
-      box-shadow: 0 12px 24px rgba(10, 94, 52, 0.12);
+      box-shadow: 0 14px 28px rgba(10, 94, 52, 0.14);
       flex-shrink: 0;
     }
 
@@ -519,26 +553,13 @@
       object-position: center;
     }
 
-    .member-title {
-      position: relative;
-      z-index: 1;
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(10, 94, 52, 0.08);
-      color: var(--green-900);
-      font: 700 16px/1 "Montserrat", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
     .member-card h3 {
       position: relative;
       z-index: 1;
-      font-size: 18px;
+      font-size: 15px;
       color: var(--green-950);
       margin: 0;
+      line-height: 1.25;
     }
 
     .member-card p {
@@ -546,6 +567,64 @@
       z-index: 1;
       color: var(--muted);
       font-size: 14px;
+      margin: 0;
+    }
+
+    .member-info {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      min-width: 0;
+      width: 100%;
+      padding-top: 2px;
+    }
+
+    .member-meta {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .member-contact {
+      display: grid;
+      gap: 6px;
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(10, 94, 52, 0.08);
+      color: #6a7f70;
+      font-size: 13px;
+      line-height: 1.5;
+      letter-spacing: 0.1px;
+    }
+
+    .member-contact p {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: #6a7f70;
+      font-size: 12px;
+      line-height: 1.55;
+      word-break: break-word;
+      letter-spacing: 0.05px;
+    }
+
+    .member-contact p::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      color: var(--green-900);
+      flex-shrink: 0;
+      margin-top: 7px;
+      box-shadow: 0 0 0 4px rgba(31, 168, 93, 0.12);
     }
 
     .member-actions {
@@ -553,7 +632,6 @@
       z-index: 1;
       display: flex;
       justify-content: flex-end;
-      margin-top: 18px;
     }
 
     .member-link {
@@ -561,12 +639,12 @@
       align-items: center;
       justify-content: center;
       min-height: 40px;
-      padding: 0 16px;
-      border-radius: 12px;
-      background: linear-gradient(90deg, var(--green-900), var(--green-700));
+      padding: 0 18px;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #0f7a43, var(--green-700));
       color: #fff;
-      border: 1px solid rgba(10, 94, 52, 0.12);
-      box-shadow: 0 10px 22px rgba(10, 94, 52, 0.16);
+      border: 1px solid rgba(10, 94, 52, 0.1);
+      box-shadow: 0 12px 24px rgba(10, 94, 52, 0.14);
       font: 700 13px/1 "Montserrat", sans-serif;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
@@ -644,13 +722,13 @@
     }
 
     .cta-card h2 {
-      max-width: 640px;
+      max-width: 100%;
       font-size: clamp(28px, 4vw, 40px);
-      margin-bottom: 12px;
+      margin-bottom: 24px;
     }
 
     .cta-card p {
-      max-width: 700px;
+      max-width: 100%;
       color: rgba(255, 255, 255, 0.9);
     }
 
@@ -720,6 +798,20 @@
 
       .hero-panel {
         padding: 20px;
+      }
+
+      .leader-header {
+        min-height: 0;
+        padding-right: 0;
+      }
+
+      .leader-header .leader-avatar {
+        position: static;
+        margin-top: 18px;
+      }
+
+      .member-top {
+        grid-template-columns: 1fr;
       }
 
       .btn,
@@ -823,9 +915,17 @@
         <div class="spotlight">
           <article class="spotlight-card">
             <div class="leader-badge">Nhân sự tiêu biểu</div>
-            <div class="leader-avatar">VH</div>
-            <h3>TS. Võ Hữu Hòa</h3>
-            <p class="leader-role">Trưởng khoa Du lịch</p>
+            <div class="leader-header">
+              <div class="leader-copy">
+                <h3>TS. Võ Hữu Hòa</h3>
+                <p class="leader-role">Chức vụ: Trưởng khoa</p>
+                <p class="leader-role">Học vị: Tiến sĩ</p>
+                <p class="leader-role">Đơn vị công tác: Đại học Đông Á</p>
+                <p class="leader-role">Email: vohuuhoa@donga.edu.vn</p>
+              </div>
+              <div class="leader-avatar"><img src="img/CBGV/Khoa Du lịch/vo-huu-hoa.jpg" alt="">VH</div>
+              
+            </div>
             <div class="leader-meta">
               <div>Học vị cao nhất: Tiến sĩ</div>
               <div>Đơn vị công tác hiện tại: Trường Đại học Đông Á</div>
@@ -874,8 +974,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/vo-huu-hoa.jpg" alt="">VH</div>
                     <div class="member-title">TS</div>
                 </div>
-                <h3>Võ Hữu Hòa</h3>
-                <p>Trưởng khoa</p>
+                <h3>TS. Võ Hữu Hòa</h3>
+                <p>Chức vụ: Trưởng khoa</p>
+                <p>Mail: hoavh@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -883,8 +984,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="BH">BH</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Trần Thị Bảo Hoàng</h3>
-                <p>Phó khoa</p>
+                <h3>ThS. Trần Thị Bảo Hoàng</h3>
+                <p>Chức vụ: Phó khoa</p>
+                <p>Mail: hoangttb@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -892,8 +994,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="KT">KT</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Đặng Thị Kim Thoa</h3>
-                <p>Phó khoa</p>
+                <h3>ThS. Đặng Thị Kim Thoa</h3>
+                <p>Chức vụ: Phó khoa</p>
+                <p>Mail: thoadtk@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -901,8 +1004,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="NT">NT</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Từ Lê Như Tâm</h3>
-                <p>Phó khoa</p>
+                <h3>ThS. Từ Lê Như Tâm</h3>
+                <p>Chức vụ: Phó khoa</p>
+                <p>Mail: tamtln@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -910,8 +1014,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="ÂN">ÂN</div>
                     <div class="member-title">TS</div>
                 </div>
-                <h3>Nguyễn Trần Thụy Ân</h3>
-                <p>Phó khoa</p>
+                <h3>TS. Nguyễn Trần Thụy Ân</h3>
+                <p>Chức vụ: Phó khoa</p>
+                <p>Mail: anntt@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -919,8 +1024,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="HT">HT</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Lê Thị Hồng Thúy</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Lê Thị Hồng Thúy</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>thuylth@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -928,8 +1034,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/tran-thi-ngoc-thao.jpg" alt="TT">TT</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Trần Thị Ngọc Thảo</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Trần Thị Ngọc Thảo</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: thaottn@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -937,8 +1044,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="ĐH">ĐH</div>
                     <div class="member-title">PGS.TS</div>
                 </div>
-                <h3>Đậu Thị Hòa</h3>
-                <p>NCS</p>
+                <h3>PGS. TS. Đậu Thị Hòa</h3>
+                <p>Chức vụ: NCS</p>
+                <p>Mail: hoadt@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -946,8 +1054,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="KD">KD</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Lê Thị Kim Dung</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Lê Thị Kim Dung</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: dungltk@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -955,8 +1064,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/le-thi-mai.jpg" alt="LM">LM</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Lê Thị Mai</h3>
-                <p>Giảng viên</p>
+                <h3>Th.S Lê Thị Mai</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: mailt@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -964,8 +1074,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="KS">KS</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Nguyễn Thị Kim Sa</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Nguyễn Thị Kim Sa</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: santk@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -973,8 +1084,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="NT">NT</div>
                     <div class="member-title">NCS</div>
                 </div>
-                <h3>Nguyễn Thị Ngọc Trinh</h3>
-                <p>NCS</p>
+                <h3>ThS. Nguyễn Thị Ngọc Trinh</h3>
+                <p>Chức vụ: NCS</p>
+                <p>Mail: trinhntn@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -982,8 +1094,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/Shizuka.png" alt="LL">LL</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Ngô Thị Ly Ly</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Ngô Thị Ly Ly</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: lyntl@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -991,8 +1104,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/le-bao-thy.jpg" alt="BT">BT</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Lê Bảo Thy</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Lê Bảo Thy</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: thylb@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -1000,8 +1114,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/chaien.jpg" alt="GH">GH</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Trần Quốc Gia Hòa</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Trần Quốc Gia Hòa</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: hoatqg@donga.edu.vn</p>
             </article>
                      
             <article class="member-card">
@@ -1009,8 +1124,9 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/nguyen-duy-lam.jpg" alt="DL">DL</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Nguyễn Duy Lâm</h3>
-                <p>Giảng viên</p>
+                <h3>ThS. Nguyễn Duy Lâm</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: lamnd@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -1019,7 +1135,8 @@
                     <div class="member-title">CB</div>
                 </div>
                 <h3>Phan Văn Mạnh</h3>
-                <p>Cán bộ</p>
+                <p>Chức vụ: Cán bộ</p>
+                <p>Mail: manhpv@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -1028,7 +1145,8 @@
                     <div class="member-title">CH</div>
                 </div>
                 <h3>Ngô Thị Xinh</h3>
-                <p>Kiêm nhiệm Giáo vụ</p>
+                <p>Chức vụ: Kiêm nhiệm Giáo vụ</p>
+                <p>Mail: xinhnt@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -1037,7 +1155,8 @@
                     <div class="member-title">CH</div>
                 </div>
                 <h3>Nguyễn Thị Hà Phương</h3>
-                <p>Kiêm nhiệm Giáo vụ</p>
+                <p>Chức vụ: Kiêm nhiệm Giáo vụ</p>
+                <p>Mail: phuongnth@donga.edu.vn</p>
             </article>
 
             <article class="member-card">
@@ -1045,8 +1164,29 @@
                     <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/huynh-thi-ngoc-thanh.jpg" alt="">HT</div>
                     <div class="member-title">ThS</div>
                 </div>
-                <h3>Huỳnh Thị Ngọc Thanh</h3>
-                <p>Giáo vụ</p>
+                <h3>ThS. Huỳnh Thị Ngọc Thanh</h3>
+                <p>Chức vụ: Giáo vụ</p>
+                <p>Mail: thanhhtn@donga.edu.vn</p>
+            </article>
+
+            <article class="member-card">
+                <div class="member-top">
+                    <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/duong-thi-ngan.jpg" alt="">HT</div>
+                    <div class="member-title">ThS</div>
+                </div>
+                <h3>ThS. Dương Thị Ngân</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: nganhdt@donga.edu.vn</p>
+            </article>
+
+            <article class="member-card">
+                <div class="member-top">
+                    <div class="member-avatar"><img src="/img/CBGV/Khoa Du lịch/nguyen-thi-da-huong.jpg" alt="">HT</div>
+                    <div class="member-title">ThS</div>
+                </div>
+                <h3>ThS. Nguyễn Thị Dạ Hương</h3>
+                <p>Chức vụ: Giảng viên</p>
+                <p>Mail: huongntd@donga.edu.vn</p>
             </article>
         </div>
       </div>
@@ -1170,6 +1310,45 @@
 
         actions.appendChild(link);
         card.appendChild(actions);
+      });
+    })();
+
+    (function () {
+      document.querySelectorAll(".member-card").forEach((card) => {
+        const top = card.querySelector(".member-top");
+        const heading = card.querySelector(".member-heading");
+        const actions = card.querySelector(".member-actions");
+        const details = Array.from(card.querySelectorAll(":scope > p"));
+        const legacyTitle = card.querySelector(".member-title");
+
+        if (!top || !heading || !actions || !details.length || top.querySelector(".member-info")) {
+          return;
+        }
+
+        const meta = document.createElement("div");
+        const info = document.createElement("div");
+
+        meta.className = "member-meta";
+        info.className = "member-info";
+
+        if (legacyTitle) {
+          legacyTitle.remove();
+        }
+
+        info.appendChild(heading);
+
+        const contact = document.createElement("div");
+        contact.className = "member-contact";
+
+        details.forEach((detail) => {
+          contact.appendChild(detail);
+        });
+
+        info.appendChild(contact);
+        meta.appendChild(actions);
+        info.appendChild(meta);
+
+        top.appendChild(info);
       });
     })();
   </script>
